@@ -1,10 +1,15 @@
 
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Noto+Sans+KR:wght@500&family=Roboto:wght@300;400;500&display=swap');
+
+
 @font-face {
     font-family: 'Tenada';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
+
 
 body {
     margin:0;
@@ -15,6 +20,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .container {
@@ -93,6 +99,7 @@ h1 {
 
 .inputArea {
     text-align: center; /* 가운데 정렬을 위해 추가 */
+    
 }
 
 #taskInput {
@@ -107,20 +114,23 @@ h1 {
 }
 
 #addIcon {
-    font-size: 40px;
+    font-size: 42px;
     opacity: 0.8;
     position:relative;
     left: 35px;
-    top : 11px;
+    top : 12px;
     transition: 0.2s;
 }
 #addIcon:hover{
     color: #7b8594;
 }
 
+#taskBoardMom {
+    overflow: overlay;
+}
+
 #taskBoard {
     padding-left: 10px;
     margin-top: 15px;
     max-height: 350px;
-    overflow-y: scroll;
 }
