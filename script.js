@@ -13,7 +13,18 @@ false 이면 안 끝난 걸로 간주하고 그대로
 진행중 끝남 탭을 누르면 언더바가 이동한다.
 끝남탭은 끝난 아이템만, 진행중탭은 진행중인 아이템만 보인다.
 전체 탭을 누르면 다시 전체 아이템으로 돌아옴
+
+
+++ 슬라이드 바 동적 구현
+enter 입력해도 추가되게 하기
+
+진행중,완료 탭에서도 삭제 바로 화면에 반영되게 
+
+ui 스타일링 하기 
+
 */
+
+
 
 // ★ 콘솔 찍어보면서 기능이 잘 작동하는지 확인 하기 !! 
 
@@ -24,13 +35,40 @@ let taskList = []
 let tabs = document.querySelectorAll(".taskTabs div");
 let mode ='all'
 let filterList = []
+let list = []
 
-// underline은 필요없으므로 i=1부터 
+
+// 입력창에 대한 이벤트 처리
+taskInput.addEventListener("keydown", function(event) {
+    // 엔터 키가 눌렸을 때
+    if (event.key === "Enter") {
+        // 기본 동작인 줄바꿈을 막음
+        event.preventDefault();
+        // 할 일 추가 함수 호출
+        addTask();
+        taskInput.value=""
+    }
+});
+
+
+// underline은 제외한 i=1부터 
 for(let i=1; i<tabs.length; i++){
     tabs[i].addEventListener("click",function(event){
         filter(event);
     });
 }
+
+// tabs를 순회하며 각 탭에 클릭 이벤트 추가
+tabs.forEach(function(tab){
+    tab.addEventListener("click", function(event){
+        // 현재 클릭된 탭에 해당하는 언더바의 위치를 설정
+        let underline = document.querySelector("#underLine");
+        underline.style.left = `${tab.offsetLeft}px`;
+        
+        // filter 함수 호출
+        filter(event);
+    });
+});
 
 
 
@@ -46,6 +84,8 @@ function addTask(){
     }
 
     taskList.push(task)
+    taskInput.value=""
+    taskInput.focus();
     console.log(taskList)
     render()
 }
@@ -58,7 +98,7 @@ function render(){
     // all  - > taskList
     // ongoing, done - > filterList
 
-    let list = []
+
     if(mode === "all"){
         list = taskList;
     }
@@ -70,7 +110,7 @@ function render(){
 
     for(let i=0; i<list.length; i++){  // html 부분을 백틱으로 감싸기
 
-        if(taskList[i].isComplete == true){
+        if(list[i].isComplete == true){
             resultHTML += `<div class="task" style="background-color:#95a5cc;">
             <div class="taskDone">${list[i].taskContent}</div>
             <div>
@@ -121,13 +161,15 @@ function deleteTask(id){
       render(); // 삭제 후 UI 업데이트 
   }
   */
-  for (let i=0; i<taskList.length; i++){
-    if(taskList[i].id == id){
-        taskList.splice(i,1);
+
+  for (let i=0; i<list.length; i++){
+    if(list[i].id == id){
+        list.splice(i,1);
         break;
     }
-  }
-    render();
+}
+render(); 
+
 }
 
 
