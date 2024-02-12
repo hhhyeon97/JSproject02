@@ -1,3 +1,11 @@
+
+@font-face {
+    font-family: 'Tenada';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     margin:0;
     background-size: cover;
@@ -16,12 +24,13 @@ body {
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 12px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
 }
 h1 {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
     font-weight: bold;
+    font-family: 'Tenada';
+    opacity: 0.8;
 }
 .taskArea {
     border: none;
@@ -59,6 +68,11 @@ h1 {
     padding :1em;
 }
 
+.task + .task { /* 첫 번째 task 아이템을 제외하고 모든 task 아이템에 적용 */
+    border-top: 1px solid lightgray; /* 상단에 구분선 추가 */
+    margin-top: 10px; /* 각 task 아이템 사이의 간격 설정 */
+}
+
 .taskDone {
     text-decoration: line-through;   
 }
@@ -89,17 +103,24 @@ h1 {
     border : 2px solid lightgray;
     padding: 10px;
     position:relative;
-    left: 38px;
+    left: 23px;
 }
 
 #addIcon {
-    width: 40px;
-    margin-left: 48px;
+    font-size: 40px;
+    opacity: 0.8;
+    position:relative;
+    left: 35px;
+    top : 11px;
+    transition: 0.2s;
+}
+#addIcon:hover{
+    color: #7b8594;
 }
 
 #taskBoard {
     padding-left: 10px;
     margin-top: 15px;
-    max-height: 300px;
+    max-height: 350px;
     overflow-y: scroll;
 }

@@ -178,27 +178,36 @@ function toggleComplete(id){
 }
 
 // delete 기능
-function deleteTask(id){
-    console.log("삭제하자")
-    /*
-    const taskIndex = taskList.findIndex(task => task.id === id);
-    // 찾은 요소를 배열에서 제거
-    if(taskIndex !== -1){
-      taskList.splice(taskIndex, 1);
-      render(); // 삭제 후 UI 업데이트 
-  }
-  */
-
-   for (let i = 0; i < list.length; i++) {
-        if (list[i].id == id) {
+function deleteTask(id) {
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].id === id) {
             list.splice(i, 1);
+            if (mode === 'all') {
+                for (let j = 0; j < taskList.length; j++) {
+                    if (taskList[j].id === id) {
+                        taskList.splice(j, 1);
+                        break;
+                    }
+                }
+            } else {
+                for (let j = 0; j < taskList.length; j++) {
+                    if (taskList[j].id === id) {
+                        taskList.splice(j, 1);
+                        break;
+                    }
+                }
+                for (let j = 0; j < filterList.length; j++) {
+                    if (filterList[j].id === id) {
+                        filterList.splice(j, 1);
+                        break;
+                    }
+                }
+            }
             break;
         }
     }
     render();
-
 }
-
 
 function filter(event) {
     //console.log("filter", event.target.id);
