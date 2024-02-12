@@ -4,8 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
+    <!--부트스트랩 링크는 내 스타일 링크 위에 배치 !! - > 아래에 두면 내가 지정한 스타일을 덮어 씌운다.-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="container">
+        <h1>To Do List</h1>
+        <section class="inputArea">
+            <input type="text" id="taskInput">
+            <button id="addBtn">+</button>
+        </section>
+
+        <section class="taskArea">
+            <div class="taskTabs">
+                <div id="underLine"></div>
+                <div>
+                    전체
+                </div>
+                <div>
+                    완료
+                </div>
+                <div>
+                    미완료
+                </div>
+            </div>
+            
+            <div id="taskBoard">
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

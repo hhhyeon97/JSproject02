@@ -1,0 +1,42 @@
+body {
+    margin:0;
+    background-image: url("https://i.pinimg.com/564x/be/c5/72/bec57247aa3aa2c5ddc4fa3dbc00ca08.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.container {
+    min-height: 100vh; /**/
+    min-width : 400px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.taskArea {
+    border: 1px solid gray;
+}
+.taskTabs{
+    display: flex;
+    border-bottom : 1px solid gray;
+    position:relative;
+}
+.taskTabs div{  /*요소를 가로정렬 하고 싶으면 부모 요소에 flex 주기 */
+    padding: 1em;
+}
+
+#underLine {
+    height: 4px;
+    background-color: black;
+    position: absolute;
+    width: 60px;
+    left: 0;
+    top: 52px;
+    padding:0px;
+
+}
+.task{
+    display: flex;
+    justify-content: space-between;
+    padding :1em;
+}
