@@ -42,11 +42,18 @@ let list = []
 taskInput.addEventListener("keydown", function(event) {
     // 엔터 키가 눌렸을 때
     if (event.key === "Enter") {
-        // 기본 동작인 줄바꿈을 막음
-        event.preventDefault();
-        // 할 일 추가 함수 호출
-        addTask();
-        taskInput.value=""
+        // 입력값 얻기
+        const inputValue = taskInput.value.trim();
+        // 입력값이 없거나 스페이스바만 입력된 경우
+        if (inputValue === "" || inputValue === " ") {
+            // 알림창 표시
+            alert("할 일을 입력해주세요!");
+            taskInput.value=""
+            taskInput.focus();
+        } else {
+            // 할 일 추가 함수 호출
+            addTask();
+        }
     }
 });
 
@@ -64,6 +71,14 @@ tabs.forEach(function(tab){
         // 현재 클릭된 탭에 해당하는 언더바의 위치를 설정
         let underline = document.querySelector("#underLine");
         underline.style.left = `${tab.offsetLeft}px`;
+
+        // 진행중 탭일 때 언더라인 길이 조정
+        if (tab.id === "ongoing") {
+            underline.style.width = "80px";
+        }else {
+            underline.style.width = "65px";
+        }
+
         
         // filter 함수 호출
         filter(event);
@@ -75,20 +90,32 @@ tabs.forEach(function(tab){
 //버튼에 이벤트 할당       (이벤트,함수)
 addBtn.addEventListener("click", addTask) 
 
-function addTask(){
-    // 정보들엔 고유한 아이디 값이 필요하다 ! 
-    let task = {
-        id : randomIDGenerate(),
-        taskContent: taskInput.value,
-        isComplete: false
+function addTask() {
+    // 입력값 얻기
+    const inputValue = taskInput.value.trim();
+    // 입력값이 없거나 스페이스바만 입력된 경우
+    if (inputValue === "" || inputValue === " ") {
+        // 알림창 표시
+        alert("할 일을 입력해주세요!");
+        taskInput.value=""
+        taskInput.focus();
+    } else {
+        // 정보들엔 고유한 아이디 값이 필요하다 ! 
+        let task = {
+            id: randomIDGenerate(),
+            taskContent: inputValue,
+            isComplete: false
+        }
+    
+        taskList.push(task)
+        taskInput.value = ""
+        taskInput.focus();
+        console.log(taskList)
+        render()
     }
-
-    taskList.push(task)
-    taskInput.value=""
-    taskInput.focus();
-    console.log(taskList)
-    render()
 }
+
+
 
 // html을 다시 그려주는 함수
 function render(){
@@ -111,19 +138,19 @@ function render(){
     for(let i=0; i<list.length; i++){  // html 부분을 백틱으로 감싸기
 
         if(list[i].isComplete == true){
-            resultHTML += `<div class="task" style="background-color:#95a5cc;">
+            resultHTML += `<div class="task" style="background-color:#c8d3e8;">
             <div class="taskDone">${list[i].taskContent}</div>
             <div>
-                <button onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-rotate-left" style="color:green;"></i></button>
-                <button onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash" style="color:red;"></i></button>
+                <button onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-rotate-left" style="color:#8cb58a; margin-right:15px;"></i></button>
+                <button onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash" style="color:#e691b3; margin-left:15px; margin-right:15px;"></i></button>
             </div>
             </div>`
         }else {
             resultHTML += `<div class="task">
             <div>${list[i].taskContent}</div>
             <div>
-                <button onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-check" style="color:green;"></i></button>
-                <button onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash" style="color:red;"></i></button>
+                <button onclick="toggleComplete('${list[i].id}')"><i class="fa-solid fa-check" style="color:#8cb58a; margin-right:15px;"></i></button>
+                <button onclick="deleteTask('${list[i].id}')"><i class="fa-solid fa-trash" style="color:#e691b3; margin-left:15px; margin-right:15px;"></i></button>
             </div>
             </div>`;
         }
@@ -139,9 +166,9 @@ function render(){
 // id 값을 매개변수로 받아와서 아이템 찾기 
 function toggleComplete(id){
     console.log("id : ",id)
-    for(let i=0; i<taskList.length; i++){
-        if(taskList[i].id == id){
-            taskList[i].isComplete = !taskList[i].isComplete;  // ★ check 유동적이게 !
+    for(let i=0; i<list.length; i++){
+        if(list[i].id == id){
+            list[i].isComplete = !list[i].isComplete;  // ★ check 유동적이게 !
             break;  // 아이템 찾으면 바로 빠져 나오게 
         }
     }
@@ -162,13 +189,13 @@ function deleteTask(id){
   }
   */
 
-  for (let i=0; i<list.length; i++){
-    if(list[i].id == id){
-        list.splice(i,1);
-        break;
+   for (let i = 0; i < list.length; i++) {
+        if (list[i].id == id) {
+            list.splice(i, 1);
+            break;
+        }
     }
-}
-render(); 
+    render();
 
 }
 
