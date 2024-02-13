@@ -57,6 +57,7 @@ h1 {
     font-size: 20px;
     position: relative;
     right : 20px;
+    letter-spacing: 2px;
 }
 
 .taskTabs div:hover {
@@ -66,7 +67,7 @@ h1 {
 .taskTabs div.clicked {
     text-decoration: underline;
     text-underline-position: under; /* 밑줄 위치를 텍스트 아래로 조정 */
-    letter-spacing: 2px; /* 글자 간격을 띄워줌 */
+    letter-spacing: 5px; /* 글자 간격을 띄워줌 */
     font-weight: bold; /* 글자 두께를 더 함 */
     text-underline-offset: 22px; /* 밑줄과 텍스트 사이의 간격 조정 */
     text-decoration-thickness: 4px; /* 밑줄 두께 설정 */
