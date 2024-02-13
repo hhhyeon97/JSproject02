@@ -36,7 +36,10 @@ h1 {
     margin-top: 20px;
     font-weight: bold;
     font-family: 'Tenada';
+    font-size: 45px;
     opacity: 0.8;
+    position:absolute;
+    top: 30px;
 }
 .taskArea {
     border: none;
@@ -46,17 +49,31 @@ h1 {
     border-bottom : 1px solid lightgray;
     position:relative;
     justify-content: center; /* 가운데 정렬을 위해 추가 */
-    
 }
 .taskTabs div{  /*요소를 가로정렬 하고 싶으면 부모 요소에 flex 주기 */
     padding: 1em;
-    margin-left: 15px;
+    transition: 0.2s; /* 밑줄 변경에 대한 트랜지션 효과 */
+    text-decoration-color: #8face3;
+    font-size: 20px;
+    position: relative;
+    right : 20px;
 }
 
 .taskTabs div:hover {
     cursor: pointer;
 }
 
+.taskTabs div.clicked {
+    text-decoration: underline;
+    text-underline-position: under; /* 밑줄 위치를 텍스트 아래로 조정 */
+    letter-spacing: 2px; /* 글자 간격을 띄워줌 */
+    font-weight: bold; /* 글자 두께를 더 함 */
+    text-underline-offset: 22px; /* 밑줄과 텍스트 사이의 간격 조정 */
+    text-decoration-thickness: 4px; /* 밑줄 두께 설정 */
+    text-decoration-color: #8face3; /* 밑줄 색상 설정 */
+}
+
+/*
 #underLine {
     height: 4px;
     background-color: #8face3;
@@ -65,9 +82,9 @@ h1 {
     top: 55px;
     padding:0px;
     transition: 0.3s;
-    margin : 0 0;
-    left: calc(50% - 110px); /* 탭 중앙에 맞추기 위해 수정 */
 }
+*/
+
 .task{
     display: flex;
     justify-content: space-between;
@@ -79,10 +96,11 @@ h1 {
     margin-top: 10px; /* 각 task 아이템 사이의 간격 설정 */
 }
 
+/*
 .taskDone {
     text-decoration: line-through;   
 }
-
+*/
 
 .task button, #addBtn {
     background: none; /* 배경 제거 */
@@ -92,37 +110,32 @@ h1 {
     font-size: 1rem; /* 아이콘 크기 조정 */
 }
 
-#addBtn {
-    font-weight: bold;
-    font-size: 30px;
-}
-
 .inputArea {
     text-align: center; /* 가운데 정렬을 위해 추가 */
     
 }
 
 #taskInput {
-    width : 50%;
-    margin: 0 auto; /* 좌우 여백을 auto로 설정하여 가운데 정렬 */    
+    width : 60%;
+    margin: 30px auto; /* 좌우 여백을 auto로 설정하여 가운데 정렬 */    
     border-radius: 5px;
     outline:none;
     border : 2px solid lightgray;
     padding: 10px;
     position:relative;
-    left: 23px;
+    left: 10px;
 }
 
 #addIcon {
     font-size: 42px;
-    opacity: 0.8;
     position:relative;
     left: 35px;
     top : 12px;
     transition: 0.2s;
+    color: black;
 }
 #addIcon:hover{
-    color: #7b8594;
+    color: #8face3;
 }
 
 #taskBoardMom {

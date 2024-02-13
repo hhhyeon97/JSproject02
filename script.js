@@ -65,6 +65,7 @@ for(let i=1; i<tabs.length; i++){
     });
 }
 
+/*
 // tabs를 순회하며 각 탭에 클릭 이벤트 추가
 tabs.forEach(function(tab){
     tab.addEventListener("click", function(event){
@@ -72,15 +73,25 @@ tabs.forEach(function(tab){
         let underline = document.querySelector("#underLine");
         underline.style.left = `${tab.offsetLeft}px`;
 
-        // 진행중 탭일 때 언더라인 길이 조정
-        if (tab.id === "ongoing") {
-            underline.style.width = "80px";
-        }else {
-            underline.style.width = "65px";
-        }
-
-        
         // filter 함수 호출
+        filter(event);
+    });
+});
+*/
+
+// 초기 상태 설정
+document.getElementById("all").classList.add("clicked");
+
+// 클릭된 탭에 대한 이벤트 핸들러 등록
+tabs.forEach(tab => {
+    tab.addEventListener("click", function(event) {
+        // 모든 탭의 clicked 클래스 제거
+        tabs.forEach(t => {
+            t.classList.remove("clicked");
+        });
+        // 클릭된 탭에 clicked 클래스 추가
+        event.target.classList.add("clicked");
+        // 필터 함수 호출
         filter(event);
     });
 });
@@ -107,7 +118,7 @@ function addTask() {
             isComplete: false
         }
     
-        taskList.push(task)
+        taskList.unshift(task);  // 최신 task가 배열의 맨 앞에 추가되어 최신 할 일이 위에 나타나게 수정
         taskInput.value = ""
         taskInput.focus();
         console.log(taskList)
@@ -214,6 +225,14 @@ function filter(event) {
 
     mode = event.target.id
     filterList = []    // 필터된 아이템을 담을 변수
+
+    // div 요소 배경색상 변경
+    tabs.forEach(tab => {
+        tab.classList.remove("clicked");
+    });
+    event.target.classList.add("clicked");
+
+
 
 
     if(mode === "all"){
