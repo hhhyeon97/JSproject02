@@ -227,11 +227,12 @@ function filter(event) {
     filterList = []    // 필터된 아이템을 담을 변수
 
     // div 요소 배경색상 변경
+   /* 
     tabs.forEach(tab => {
         tab.classList.remove("clicked");
     });
     event.target.classList.add("clicked");
-
+*/
 
 
 
