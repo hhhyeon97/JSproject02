@@ -3,12 +3,77 @@
 body {
     margin:0;
     padding: 0;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
-
 #taskContainer{
+    display: flex;
+    align-items: center;
+    flex-direction: column; /* 세로 방향으로 아이템을 배치하도록 수정 */
+    width: 500px;
+    height: 400px;
+    border-radius: 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+h2 {
+    font-size: 30px;
+}
+#tabArea{
+    display: flex;
+    border-bottom: 2px solid lightgray;
+    padding-bottom: 10px;
+}
+#tabArea div {
+    margin: 0 30px; /* 각 탭 사이의 간격 조정 */
+    cursor: pointer;
+}
+#tabArea div.active {
+    font-weight: bold;
 }
 
-#tabArea{
+#taskList {
+    margin: 20px auto;
+}
+
+#inputArea {
+    margin-bottom: 20px;
+}
+#taskInput {
+    border-radius: 6px;
+    outline : none;
+    padding : 10px;
+    border : 2px solid gray;
+}
+
+#addBtn {
+    background-color: white;
+    border-radius: 6px;
+    outline: none;
+    padding:8px;
+    cursor: pointer;
+    border : 2px solid gray;
+}
 
 
+#taskView {
+    margin-top: 20px;
+}
+
+/* 추가한 부분: 아이콘에 대한 스타일링 */
+.task-item .bx {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.task-item {
+    margin: 0 10px;
+}
+/* 추가한 부분: 체크된 할 일에 대한 스타일링 */
+.completed span {
+    text-decoration: line-through;
 }
