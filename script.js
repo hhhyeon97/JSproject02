@@ -93,7 +93,6 @@ tabs.forEach(tab => {
 });
 
 
-
 //버튼에 이벤트 할당       (이벤트,함수)
 addBtn.addEventListener("click", addTask) 
 
@@ -229,8 +228,6 @@ function filter(event) {
     });
     event.target.classList.add("clicked");
 */
-
-
 
     if(mode === "all"){
         //전체 리스트 보여주기

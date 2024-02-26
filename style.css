@@ -52,11 +52,11 @@ h1 {
 }
 .taskTabs div{  /*요소를 가로정렬 하고 싶으면 부모 요소에 flex 주기 */
     padding: 1em;
-    transition: 0.2s; /* 밑줄 변경에 대한 트랜지션 효과 */
-    text-decoration-color: #8face3;
+    transition: border-bottom 0.2s ease-in; /* 밑줄 변경에 대한 트랜지션 효과 */
     font-size: 20px;
     position: relative;
     letter-spacing: 2px;
+    border-bottom: 3px solid transparent; /* 초기에는 밑줄이 없음 */
 }
 
 .taskTabs div:hover {
@@ -64,26 +64,11 @@ h1 {
 }
 
 .taskTabs div.clicked {
-    text-decoration: underline;
-    text-underline-position: under; /* 밑줄 위치를 텍스트 아래로 조정 */
-    letter-spacing: 5px; /* 글자 간격을 띄워줌 */
-    font-weight: bold; /* 글자 두께를 더 함 */
-    text-underline-offset: 22px; /* 밑줄과 텍스트 사이의 간격 조정 */
-    text-decoration-thickness: 4px; /* 밑줄 두께 설정 */
-    text-decoration-color: #8face3; /* 밑줄 색상 설정 */
-}
+    
+    border-bottom: 3px solid #8face3;
+    padding-bottom : 6px;
 
-/*
-#underLine {
-    height: 4px;
-    background-color: #8face3;
-    position: absolute;
-    width: 65px;
-    top: 55px;
-    padding:0px;
-    transition: 0.3s;
 }
-*/
 
 .task{
     display: flex;
@@ -96,11 +81,6 @@ h1 {
     margin-top: 10px; /* 각 task 아이템 사이의 간격 설정 */
 }
 
-/*
-.taskDone {
-    text-decoration: line-through;   
-}
-*/
 
 .task button, #addBtn {
     background: none; /* 배경 제거 */
@@ -111,7 +91,7 @@ h1 {
 }
 
 .inputArea {
-    text-align: center; /* 가운데 정렬을 위해 추가 */
+    text-align: center;
 }
 
 #taskInput {
@@ -123,6 +103,13 @@ h1 {
     padding: 10px;
     position:relative;
     left: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    
+    #addIcon {
+        margin-right: 15px;
+    }
 }
 
 #addIcon {
@@ -148,5 +135,5 @@ h1 {
 }
 
 .taskDone {
-    text-decoration: line-through; /* 밑줄 추가 */
+    text-decoration: line-through; /*글자 중간에 글을 긋는다*/
 }
