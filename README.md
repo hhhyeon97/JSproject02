@@ -1,10 +1,10 @@
-<h1 align="left">to do list 📝</h1>
+<h1 align="left">to do do 📝</h1>
 
 배포 url : https://jspractice02.netlify.app/
 
 <div align="left">
   
-![image](https://github.com/hhhyeon97/tododo/assets/148893126/46f27d9e-40fc-4bb7-9704-0f4c8b0c40bd)
+![tododo1](https://github.com/hhhyeon97/tododo/assets/148893126/fcbfa599-8dd9-43a5-9db8-f533917139bd)
 
 
 </div>
