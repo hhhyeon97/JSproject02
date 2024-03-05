@@ -97,30 +97,42 @@ tabs.forEach(tab => {
 addBtn.addEventListener("click", addTask) 
 
 function addTask() {
-    // 입력값 얻기
-    const inputValue = taskInput.value.trim();
-    // 입력값이 없거나 스페이스바만 입력된 경우
-    if (inputValue === "" || inputValue === " ") {
-        // 알림창 표시
-        alert("할 일을 입력해주세요!");
-        taskInput.value=""
-        taskInput.focus();
-    } else {
-        // 정보들엔 고유한 아이디 값이 필요하다 ! 
-        let task = {
-            id: randomIDGenerate(),
-            taskContent: inputValue,
-            isComplete: false
-        }
-    
-        taskList.unshift(task);  // 최신 task가 배열의 맨 앞에 추가되어 최신 할 일이 위에 나타나게 수정
-        taskInput.value = ""
-        taskInput.focus();
-        console.log(taskList)
-        render()
-    }
+     // 입력값 얻기
+     const inputValue = taskInput.value.trim();
+     // 입력값이 없거나 스페이스바만 입력된 경우
+     if (inputValue === "" || inputValue === " ") {
+         // 알림창 표시
+         alert("할 일을 입력해주세요!");
+         taskInput.value=""
+         taskInput.focus();
+     } else {
+         // 정보들엔 고유한 아이디 값이 필요하다 ! 
+         let task = {
+             id: randomIDGenerate(),
+             taskContent: inputValue,
+             isComplete: false
+         }
+     
+         taskList.unshift(task);  // 최신 task가 배열의 맨 앞에 추가되어 최신 할 일이 위에 나타나게 수정
+         taskInput.value = ""
+         taskInput.focus();
+         
+         // 로컬 스토리지에 데이터 추가
+         localStorage.setItem('taskList', JSON.stringify(taskList));
+         
+         render()
+     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    // 로컬 스토리지에서 데이터 불러오기
+    const savedTaskList = JSON.parse(localStorage.getItem('taskList'));
+    
+    if (savedTaskList) {
+        taskList = savedTaskList;
+        render();
+    }
+});
 
 
 // html을 다시 그려주는 함수
@@ -179,8 +191,9 @@ function toggleComplete(id){
         }
     }
     render(); // ui 업데이트 
+    // 로컬 스토리지 업데이트
+    localStorage.setItem('taskList', JSON.stringify(taskList));
     console.log(taskList)
-
 }
 
 // delete 기능
@@ -213,6 +226,8 @@ function deleteTask(id) {
         }
     }
     render();
+    // 로컬 스토리지 업데이트
+    localStorage.setItem('taskList', JSON.stringify(taskList));
 }
 
 function filter(event) {
