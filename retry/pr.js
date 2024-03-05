@@ -31,7 +31,6 @@ function addTask() {
     `;
   // 생성한 요소를 taskView에 추가
   taskView.appendChild(newTask);
-
   userInput.value = '';
   userInput.focus();
 
